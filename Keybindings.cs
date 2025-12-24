@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Windows.Input;
 using System.Windows.Markup;
-using NintendoSpy.Readers;
+using Project64Spy.Readers;
 
-namespace NintendoSpy
+namespace Project64Spy
 {
     public class Keybindings
     {

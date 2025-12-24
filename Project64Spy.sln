@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11312.210 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NintendoSpy", "NintendoSpy.csproj", "{265E6467-1C02-463D-ADE0-FDE2A3300925}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project64Spy", "Project64Spy.csproj", "{265E6467-1C02-463D-ADE0-FDE2A3300925}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MIPSInterpreter", "MIPSInterpreter\MIPSInterpreter.csproj", "{144EE1B2-EFFB-4014-AD15-4DC8BAE367A0}"
 EndProject

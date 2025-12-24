@@ -1,41 +1,45 @@
-NintendoSpy
+Project64Spy with support for Kaillera versions of Project64, and other emulators.
 ======
 
-#### This project is not being actively developed by the owner, however PRs are more than welcome!
+Tested emulators: Project64 1.4, 1.6, 1.7, 2.3.x, 2.4, 3.0.1, AQZ Netplay, 4.0.x
 
-#### [Download the latest NintendoSpy release here.](https://github.com/jaburns/NintendoSpy/releases/latest) (x64 and experimental x86 Windows binary)
+This fork adds support to other versions of Project64 with Kaillera Netplay, specifically:
+- Project64k - Father of all Kaillera forks below
+- Project64KVE - Kaillera (Vista)
+- Project64K7E - Kaillera (Windows 7)
+- Project64KSE - Kaillera (Smash Edition)
+- Project64SE - Standard Edition
 
-This project provides a general solution for live-streaming your controller inputs while speedrunning, or recording inputs for tutorials on how to perform tricks.  It supports tying in to NES, SNES, Nintendo 64, and GameCube controller signals to get a live view of them, as well as any gamepad connected to your PC for use with emulators.  XBox 360 controllers are supported with a skin out of the box, but other gamepads will require creating a skin.
+- Mupen64 - specifically versions 1.0.9, 1.0.9.1, 1.0.10 and legacy versions already support:
+- Mupen64-rerecording
+- Mupen64-pucrash
+- Mupen64_lua
+- Mupen64-wiivc
+- Mupen64-RTZ
+- Mupen64-rrv8-avisplit
+- Mupen64-rerecording-v2-reset
 
-NintendoSpy supports custom skins using a straight-forward XML-based skin format.  You can also bind controller input combinations to trigger keypresses for hitting checkpoints on your splits.  If you create your own skins, feel free to submit them as pull requests to this repository.
+- RetroArch (already supported)
+- Wine Preloader (already supported)
 
-Some extra skins for NES and SNES [can be found here](http://proximitysound.com/skins).
+Now you can use Project64Spy without having to rename each emulator instance, this aims to fix an issue where Project64Spy and autosplitters couldn't be used at the same time, since autosplitters requires either Project64KVE or Project64KSE to work. 
 
-There's also a [fork available here](https://github.com/zoggins/RetroSpy) which supports Atari/Commodore joysticks, Sega Genesis controllers, SMS controllers and the Atari 2600 Omega Race Booster Grip.
+# Compatibility List
+- TODO: Test the Spy with all games for a detailed compatibility list.
+- Mupen64 support is limited to the list above, so it doesn't support Mupen64k, Mupen64plus or the frontend M64py. Send a PR if you figure out a solution for this.
 
-## Documentation
-
-### Wiring and hardware
-
-The general design of NintendoSpy involves splicing the controller wire, and attaching the appropriate signal wires to an Arduino.  Then you just need to install the Arduino firmware packaged in the NintendoSpy release, and run the viewer software.  For more in-depth tutorials on how to do this, check out some of the links below.
-
-![](https://github.com/jeremyaburns/NintendoSpy/raw/master/docs/tutorial-images/wiring-all.png)
-
-[EvilAsh25's SNES hardware building guide](https://github.com/jaburns/NintendoSpy/blob/master/docs/guide-evilash25.md)
-
-[Gamecube hardware tutorial](https://github.com/jaburns/NintendoSpy/blob/master/docs/tutorial-gamecube.md)
-
-[N64 hardware tutorial](https://github.com/jaburns/NintendoSpy/blob/master/docs/tutorial-n64.md)
-
-### Using the viewer software
-
-Once you've unzipped the NintendoSpy release, run NintendoSpy.exe to open the controller viewer.  You'll be greeted by the input source configuration screen, which is fairly straightforward to configure.  First select the console your NintendoSpy hardware is set up to view, "PC 360", or "Generic PC Gamepad".  For the latter 2 choices, COM port is irrelevant since the device is expected to simply interface over standard USB.  If you select a Nintendo console however, you'll have to select the COM port the Arduino is communicating over.  Honestly, the easiest way to figure this out is to just try each port.  There are never many in the list, and it does no harm to pick the wrong one other than you won't see any inputs.
-
-![](https://github.com/jeremyaburns/NintendoSpy/raw/master/docs/tutorial-images/interface.png)
-
-Once you've selected the input source, you'll have to pick a skin.  Each skin can have multiple backgrounds, which are generally used to provide various colors for the controller itself.  After picked a skin, hit ``Go!`` and you should see the viewer screen.
-
-### Creating your own skins
+## How to compile Project64Spy from source
+- Download Visual Studio 2022 or 2026, any of them will do.
+- Unzip the source, open Project64Spy.sln, there are two projects inside, MIPSInterpreter and Project64Spy, you only need to compile the Project64Spy project.
+- For consistency, you should always compile with these settings:
+  - Configuration: Release, you should not use Debug, unless you're actively debugging.
+  - Target Framework: 4.8 or 4.8.1, Output Type: Windows Application.
+   - If Net Framework 4.8 and 4.8.1 don't appear in the Target Framework list, you have to download one of them, then restart Visual Studio, now you should be able to select them.
+  - Target Platform: x64
+  - Auto-generate binding redirects, Allow unsafe code, Optimize Code: All Enabled.
+  - In the Solution Explorer, right click on Project64Spy project, select Compile. It should create "Project64Spy.exe in the bin folder. If it doesn't compile and shows some error message, then you likely did something wrong, remember to select Configuration: "Release" and Platform "x64 in the VS toolbar above.
+ 
+## Creating your own skins
 
 Each skin consists of a subfolder in the "skins" directory, which is expected to contain a file called ``skin.xml`` along with all the PNG image assets required by the skin.  The easiest way to create a skin for your target console is probably just to copy+paste the default skin and modify it according to your needs.  What follows is a thorough documentation of the skin.xml format for reference if you'd like to create more complex skins.
 

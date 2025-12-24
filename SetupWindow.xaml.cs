@@ -8,13 +8,13 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-using NintendoSpy.Readers;
+using Project64Spy.Readers;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
 
-namespace NintendoSpy
+namespace Project64Spy
 {
     public partial class SetupWindow : Window
     {
@@ -30,7 +30,7 @@ namespace NintendoSpy
             DataContext = _vm;
 
             if (! Directory.Exists ("skins")) {
-                MessageBox.Show ("Could not find skins folder!", "NintendoSpy", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show ("Could not find skins folder!", "Project64Spy", MessageBoxButton.OK, MessageBoxImage.Error);
                 Close ();
                 return;
             }
@@ -81,20 +81,13 @@ namespace NintendoSpy
             StringBuilder msg = new StringBuilder ();
             msg.AppendLine ("Some skins were unable to be parsed:");
             foreach (var err in errs) msg.AppendLine (err);
-            MessageBox.Show (msg.ToString (), "NintendoSpy", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show (msg.ToString (), "Project64Spy", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         static string[] processNames = {
-            "project64", "project64d",
-            "mupen64-rerecording",
-            "mupen64-pucrash",
-            "mupen64_lua",
-            "mupen64-wiivc",
-            "mupen64-RTZ",
-            "mupen64-rerecording-v2-reset",
-            "mupen64-rrv8-avisplit",
-            "mupen64-rerecording-v2-reset",
-            "mupen64",
+            "project64", "project64d", "project64k", "project64kve", "project64k7e", "project64kse", "project64se",
+            "mupen64", "mupen64_lua", "mupen64-pucrash", "mupen64-rerecording",
+            "mupen64-rerecording-v2-reset", "mupen64-rrv8-avisplit", "mupen64-RTZ", "mupen64-wiivc",
             "retroarch",
             "wine-preloader"
         };
@@ -163,7 +156,7 @@ namespace NintendoSpy
 #else
             catch (Exception ex) {
 #endif
-                MessageBox.Show (ex.Message, "NintendoSpy", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show (ex.Message, "Project64Spy", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             this.Show ();

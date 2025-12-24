@@ -8,7 +8,7 @@ using SlimDX.DirectInput;
 using System.Windows.Threading;
 using System.IO;
 
-namespace NintendoSpy.Readers
+namespace Project64Spy.Readers
 {
     sealed public class GamepadReader : IControllerReader
     {

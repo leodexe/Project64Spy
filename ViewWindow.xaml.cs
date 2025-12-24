@@ -13,9 +13,9 @@ using System.Windows.Media.Imaging;
 using System.ComponentModel;
 using System.Windows.Shapes;
 
-using NintendoSpy.Readers;
+using Project64Spy.Readers;
 
-namespace NintendoSpy
+namespace Project64Spy
 {
     public partial class ViewWindow : Window, INotifyPropertyChanged
     {

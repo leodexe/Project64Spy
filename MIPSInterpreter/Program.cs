@@ -33,7 +33,7 @@ namespace MIPSInterpreter
 
         struct CleanseResult
         {
-            public MaskPair pair;
+            // public MaskPair pair;
             public Instruction inst;
             public Instruction cleanedInst;
         };
@@ -74,7 +74,7 @@ namespace MIPSInterpreter
                 }
                 // Console.WriteLine($"clean: {i:X2}: {cleanedInst, -32} {cleanedCmd:X8} {mask:X8}");
 
-                cleanedResults[i].pair = new MaskPair(cleanedCmd, mask);
+                // cleanedResults[i].pair = new MaskPair(cleanedCmd, mask);
                 cleanedResults[i].inst = inst;
                 cleanedResults[i].cleanedInst = cleanedInst;
 

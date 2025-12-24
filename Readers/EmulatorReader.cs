@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Threading;
 
-namespace NintendoSpy.Readers
+namespace Project64Spy.Readers
 {
     sealed public class EmulatorReader : IControllerReader
     {
@@ -95,15 +95,15 @@ namespace NintendoSpy.Readers
                 if (name.Contains("project64") || name.Contains("wine-preloader"))
                 {
                     DeepPointer[] ramPtrBaseSuggestionsDPtrs = { 
-                        new DeepPointer("Project64.exe", 0xD6A1C),     //1.6
+                        new DeepPointer("Project64.exe", 0xD6A1C),     // 1.4 (Kaillera) and 1.6
                         new DeepPointer("RSP 1.7.dll", 0x4C054), 
-                        new DeepPointer("RSP 1.7.dll", 0x44B5C),        //2.3.2; 2.4
+                        new DeepPointer("RSP 1.7.dll", 0x44B5C),        // 2.3.2; 2.4
                     };
 
                     DeepPointer[] romPtrBaseSuggestionsDPtrs = { 
-                        new DeepPointer("Project64.exe", 0xD6A2C),     //1.6
+                        new DeepPointer("Project64.exe", 0xD6A2C),     // 1.4 (Kaillera) and 1.6
                         new DeepPointer("RSP 1.7.dll", 0x4C050), 
-                        new DeepPointer("RSP 1.7.dll", 0x44B58)        //2.3.2; 2.4
+                        new DeepPointer("RSP 1.7.dll", 0x44B58)        // 2.3.2; 2.4
                     };
 
                     foreach (DeepPointer ramSuggestionPtr in ramPtrBaseSuggestionsDPtrs)
@@ -114,8 +114,9 @@ namespace NintendoSpy.Readers
                             ptr = ramSuggestionPtr.Deref<int>(_process);
                             ramPtrBaseSuggestions.Add(ptr);
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            Console.WriteLine($"Pointer Error: {ex.Message} | Stack: {ex.StackTrace}");
                             continue;
                         }
                     }
@@ -166,8 +167,9 @@ namespace NintendoSpy.Readers
 
                 _state = State.RUNNING;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Scan Error: {ex.Message} | Stack: {ex.StackTrace}");
                 _state = State.INVALIDATED;
             }
         }
@@ -240,8 +242,9 @@ namespace NintendoSpy.Readers
                     throw new ArgumentException("Validation failed!");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Tick Error: {ex.Message} | Stack: {ex.StackTrace}");
                 _state = State.INVALIDATED;
                 Scan();
                 return;
@@ -257,8 +260,9 @@ namespace NintendoSpy.Readers
                 x = (sbyte)(value >> 8);
                 y = (sbyte)value;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Weird Error: {ex.Message} | Stack: {ex.StackTrace}");
                 // this is kind of a weird situation but let's consider this failure temporary...
                 return;
             }

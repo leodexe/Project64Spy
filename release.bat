@@ -1,5 +1,7 @@
 @echo off
 
+echo You are not supposed to compile with this batch file unless you know what are you doing, use Visual Studio instead.
+pause
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe NintendoSpy.sln /p:Configuration=Release
 
 if errorlevel 0 goto buildOK

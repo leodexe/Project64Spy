@@ -1,11 +1,11 @@
-﻿using NintendoSpy.Readers;
+﻿using Project64Spy.Readers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NintendoSpy
+namespace Project64Spy
 {
     public class InputSource
     {

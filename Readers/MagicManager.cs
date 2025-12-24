@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NintendoSpy.Readers
+namespace Project64Spy.Readers
 {
     class MagicManager
     {
